@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ValoGuide</string>
+    <string name="error">Something went wrong. Please try again later.</string>
+    <string name="favorites">Favorites</string>
+    <string name="add">Add to favorites</string>
+    <string name="remove">Remove from favorites</string>
+    <string name="added">Agent added to favorites</string>
+    <string name="removed">Agent removed from favorites</string>
+    <string name="empty">No favorites.</string>
+</resources>
