@@ -1,8 +1,8 @@
 package com.iedrania.valoguide.core.data.source.local
 
-import androidx.lifecycle.LiveData
 import com.iedrania.valoguide.core.data.source.local.entity.AgentEntity
 import com.iedrania.valoguide.core.data.source.local.room.AgentDao
+import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource private constructor(private val agentDao: AgentDao) {
 
@@ -15,11 +15,11 @@ class LocalDataSource private constructor(private val agentDao: AgentDao) {
             }
     }
 
-    fun getAllAgent(): LiveData<List<AgentEntity>> = agentDao.getAllAgent()
+    fun getAllAgent(): Flow<List<AgentEntity>> = agentDao.getAllAgent()
 
-    fun getFavoriteAgent(): LiveData<List<AgentEntity>> = agentDao.getFavoriteAgent()
+    fun getFavoriteAgent(): Flow<List<AgentEntity>> = agentDao.getFavoriteAgent()
 
-    fun insertAgent(agentList: List<AgentEntity>) = agentDao.insertAgent(agentList)
+    suspend fun insertAgent(agentList: List<AgentEntity>) = agentDao.insertAgent(agentList)
 
     fun setFavoriteAgent(agent: AgentEntity, newState: Boolean) {
         agent.isFavorite = newState
