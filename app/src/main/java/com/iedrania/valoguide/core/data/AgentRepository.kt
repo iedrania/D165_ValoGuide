@@ -11,26 +11,11 @@ import com.iedrania.valoguide.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class AgentRepository private constructor(
+class AgentRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) : IAgentRepository {
-
-    companion object {
-        @Volatile
-        private var instance: AgentRepository? = null
-
-        fun getInstance(
-            remoteData: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
-        ): AgentRepository =
-            instance ?: synchronized(this) {
-                instance ?: AgentRepository(remoteData, localData, appExecutors)
-            }
-    }
-
     override fun getAllAgent(): Flow<Resource<List<Agent>>> =
         object : NetworkBoundResource<List<Agent>, List<AgentResponse>>(appExecutors) {
             override fun loadFromDB(): Flow<List<Agent>> {

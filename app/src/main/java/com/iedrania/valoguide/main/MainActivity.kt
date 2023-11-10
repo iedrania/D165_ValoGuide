@@ -6,15 +6,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iedrania.valoguide.R
 import com.iedrania.valoguide.core.data.Resource
 import com.iedrania.valoguide.core.ui.AgentAdapter
-import com.iedrania.valoguide.core.ui.ViewModelFactory
 import com.iedrania.valoguide.databinding.ActivityMainBinding
 import com.iedrania.valoguide.detail.DetailActivity
 import com.iedrania.valoguide.favorite.FavoriteActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -31,9 +30,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val factory = ViewModelFactory.getInstance(this.application)
-        val mainViewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
-
+        val mainViewModel: MainViewModel by viewModel()
         mainViewModel.agent.observe(this) {
             if (it != null) {
                 when (it) {

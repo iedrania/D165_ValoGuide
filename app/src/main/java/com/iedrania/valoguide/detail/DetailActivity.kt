@@ -4,25 +4,20 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.iedrania.valoguide.R
 import com.iedrania.valoguide.core.domain.model.Agent
-import com.iedrania.valoguide.core.ui.ViewModelFactory
 import com.iedrania.valoguide.databinding.ActivityDetailBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var detailViewModel: DetailViewModel
+    private val detailViewModel by viewModel<DetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val factory = ViewModelFactory.getInstance(this.application)
-        detailViewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         @Suppress("DEPRECATION")
         val detailAgent = intent.getParcelableExtra<Agent>(EXTRA_DATA)
