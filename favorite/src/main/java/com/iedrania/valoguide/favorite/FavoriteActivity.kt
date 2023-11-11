@@ -6,9 +6,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iedrania.valoguide.core.ui.AgentAdapter
-import com.iedrania.valoguide.databinding.ActivityFavoriteBinding
 import com.iedrania.valoguide.detail.DetailActivity
+import com.iedrania.valoguide.favorite.databinding.ActivityFavoriteBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
@@ -17,6 +18,8 @@ class FavoriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadKoinModules(favoriteModule)
 
         val agentAdapter = AgentAdapter()
         agentAdapter.onItemClick = { selectedData ->
@@ -37,7 +40,8 @@ class FavoriteActivity : AppCompatActivity() {
             adapter = agentAdapter
         }
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Favorite Agents"
     }
 
     override fun onSupportNavigateUp(): Boolean {

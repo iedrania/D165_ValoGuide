@@ -1,6 +1,7 @@
 package com.iedrania.valoguide.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,7 +13,6 @@ import com.iedrania.valoguide.core.data.Resource
 import com.iedrania.valoguide.core.ui.AgentAdapter
 import com.iedrania.valoguide.databinding.ActivityMainBinding
 import com.iedrania.valoguide.detail.DetailActivity
-import com.iedrania.valoguide.favorite.FavoriteActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -70,8 +70,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_favorites -> {
-                val intent = Intent(this, FavoriteActivity::class.java)
-                startActivity(intent)
+                val uri = Uri.parse("valoguide://favorite")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }
         return super.onOptionsItemSelected(item)
