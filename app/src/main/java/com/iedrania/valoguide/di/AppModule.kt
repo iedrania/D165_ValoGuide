@@ -1,4 +1,4 @@
-package com.iedrania.valoguide.core.di
+package com.iedrania.valoguide.di
 
 import com.iedrania.valoguide.core.domain.usecase.AgentInteractor
 import com.iedrania.valoguide.core.domain.usecase.AgentUseCase
@@ -9,7 +9,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    factory<AgentUseCase> { AgentInteractor(get()) }
+    factory<com.iedrania.valoguide.core.domain.usecase.AgentUseCase> {
+        com.iedrania.valoguide.core.domain.usecase.AgentInteractor(
+            get()
+        )
+    }
 }
 
 val viewModelModule = module {

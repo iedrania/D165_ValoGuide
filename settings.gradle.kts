@@ -12,5 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "ValoGuide"
-include ':app'
+include(":app")
+include(":core")

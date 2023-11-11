@@ -17,11 +17,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
-    factory { get<AgentDatabase>().agentDao() }
+    factory { get<com.iedrania.valoguide.core.data.source.local.room.AgentDatabase>().agentDao() }
     single {
         Room.databaseBuilder(
             androidContext(),
-            AgentDatabase::class.java, "Agent.db"
+            com.iedrania.valoguide.core.data.source.local.room.AgentDatabase::class.java, "Agent.db"
         ).fallbackToDestructiveMigration().build()
     }
 }
@@ -40,13 +40,19 @@ val networkModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
-        retrofit.create(ApiService::class.java)
+        retrofit.create(com.iedrania.valoguide.core.data.source.remote.network.ApiService::class.java)
     }
 }
 
 val repositoryModule = module {
-    single { LocalDataSource(get()) }
-    single { RemoteDataSource(get()) }
-    factory { AppExecutors() }
-    single<IAgentRepository> { AgentRepository(get(), get(), get()) }
+    single { com.iedrania.valoguide.core.data.source.local.LocalDataSource(get()) }
+    single { com.iedrania.valoguide.core.data.source.remote.RemoteDataSource(get()) }
+    factory { com.iedrania.valoguide.core.utils.AppExecutors() }
+    single<com.iedrania.valoguide.core.domain.repository.IAgentRepository> {
+        com.iedrania.valoguide.core.data.AgentRepository(
+            get(),
+            get(),
+            get()
+        )
+    }
 }

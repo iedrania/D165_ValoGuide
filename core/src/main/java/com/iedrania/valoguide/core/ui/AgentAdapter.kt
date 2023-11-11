@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.iedrania.valoguide.R
+import com.iedrania.valoguide.core.R
 import com.iedrania.valoguide.core.domain.model.Agent
-import com.iedrania.valoguide.databinding.ItemAgentBinding
+import com.iedrania.valoguide.core.databinding.ItemAgentBinding
 
 class AgentAdapter : RecyclerView.Adapter<AgentAdapter.ListViewHolder>() {
 

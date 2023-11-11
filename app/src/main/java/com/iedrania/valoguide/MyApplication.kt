@@ -4,8 +4,8 @@ import android.app.Application
 import com.iedrania.valoguide.core.di.databaseModule
 import com.iedrania.valoguide.core.di.networkModule
 import com.iedrania.valoguide.core.di.repositoryModule
-import com.iedrania.valoguide.core.di.useCaseModule
-import com.iedrania.valoguide.core.di.viewModelModule
+import com.iedrania.valoguide.di.useCaseModule
+import com.iedrania.valoguide.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
