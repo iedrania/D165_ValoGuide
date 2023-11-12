@@ -1,12 +1,15 @@
 package com.iedrania.valoguide.detail
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.iedrania.valoguide.R
 import com.iedrania.valoguide.core.domain.model.Agent
+import com.iedrania.valoguide.core.ui.AbilityAdapter
 import com.iedrania.valoguide.databinding.ActivityDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,15 +28,25 @@ class DetailActivity : AppCompatActivity() {
             showAgentDetail(detailAgent)
         }
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = ""
+
+        val abilityAdapter = AbilityAdapter()
+        abilityAdapter.setData(detailAgent?.abilities)
+        with(binding.rvAbilities) {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = abilityAdapter
+        }
     }
 
     private fun showAgentDetail(agent: Agent) {
+        binding.relativeLayout.setBackgroundColor(Color.parseColor("#${agent.backgroundGradientColors}"))
         binding.tvDetailName.text = agent.displayName
+        binding.tvDetailDescription.text = agent.role
         Glide.with(this)
-            .load(agent.displayIcon)
-            .into(binding.imgDetailPhoto)
-        binding.imgDetailPhoto.contentDescription = "${agent.displayName}'s full portrait"
+            .load(agent.fullPortrait)
+            .into(binding.ivDetailPhoto)
 
         var favorite = agent.isFavorite
         setFavorite(favorite)
@@ -47,10 +60,18 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setFavorite(favorite: Boolean) {
         if (favorite) {
-            binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_favorite_24))
+            binding.fab.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this, R.drawable.baseline_favorite_24
+                )
+            )
             binding.fab.contentDescription = R.string.remove.toString()
         } else {
-            binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_favorite_border_24))
+            binding.fab.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this, R.drawable.baseline_favorite_border_24
+                )
+            )
             binding.fab.contentDescription = R.string.add.toString()
         }
     }

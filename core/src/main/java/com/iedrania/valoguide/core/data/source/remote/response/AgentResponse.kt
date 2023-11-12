@@ -12,9 +12,15 @@ data class AgentResponse(
     @field:SerializedName("description")
     val description: String,
 
-    @field:SerializedName("displayIcon")
-    val displayIcon: String,
-
     @field:SerializedName("fullPortrait")
-    val fullPortrait: String
+    val fullPortrait: String,
+
+    @field:SerializedName("backgroundGradientColors")
+    val backgroundGradientColors: List<String>,
+
+    @field:SerializedName("role")
+    val role: RoleResponse,
+
+    @field:SerializedName("abilities")
+    val abilities: List<AbilityResponse>
 )

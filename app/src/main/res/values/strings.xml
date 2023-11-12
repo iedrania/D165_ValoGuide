@@ -8,4 +8,5 @@
     <string name="removed">Agent removed from favorites</string>
     <string name="empty">No favorites.</string>
     <string name="title_favorite">Favorite</string>
+    <string name="tagline">Choose your awesome agents</string>
 </resources>

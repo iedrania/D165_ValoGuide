@@ -3,6 +3,8 @@ package com.iedrania.valoguide.core.data.source.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.iedrania.valoguide.core.utils.AbilityListConverter
 
 @Entity(tableName = "agent")
 data class AgentEntity(
@@ -16,12 +18,19 @@ data class AgentEntity(
     @ColumnInfo(name = "description")
     var description: String,
 
-    @ColumnInfo(name = "displayIcon")
-    var displayIcon: String,
-
     @ColumnInfo(name = "fullPortrait")
     var fullPortrait: String,
 
     @ColumnInfo(name = "isFavorite")
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+
+    @ColumnInfo(name = "backgroundGradientColors")
+    var backgroundGradientColors: String,
+
+    @ColumnInfo(name = "role")
+    var role: String,
+
+    @TypeConverters(AbilityListConverter::class)
+    @ColumnInfo(name = "abilities")
+    var abilities: List<AbilityEntity>
 )

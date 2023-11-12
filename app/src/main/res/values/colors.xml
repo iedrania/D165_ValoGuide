@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue_2">#79c0ff</color>
-    <color name="blue_5">#1f6feb</color>
-    <color name="blue_7">#0d419d</color>
-    <color name="green_2">#56d364</color>
-    <color name="green_7">#0f5323</color>
+    <color name="valo_red">#FA4454</color>
+    <color name="valo_green">#0C9B00</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

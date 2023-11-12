@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.ValoGuide" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_2</item>
-        <item name="colorPrimaryVariant">@color/blue_7</item>
+        <item name="colorPrimary">@color/valo_red</item>
+        <item name="colorPrimaryVariant">@color/valo_red</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/green_2</item>
-        <item name="colorSecondaryVariant">@color/green_2</item>
+        <item name="colorSecondary">@color/valo_green</item>
+        <item name="colorSecondaryVariant">@color/valo_green</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>

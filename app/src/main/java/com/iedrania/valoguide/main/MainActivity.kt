@@ -7,7 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.iedrania.valoguide.R
 import com.iedrania.valoguide.core.data.Resource
 import com.iedrania.valoguide.core.ui.AgentAdapter
@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        with (binding.rvAgents) {
-            layoutManager = LinearLayoutManager(context)
+        with(binding.rvAgents) {
+            layoutManager = GridLayoutManager(context, 2)
             setHasFixedSize(true)
             adapter = agentAdapter
         }

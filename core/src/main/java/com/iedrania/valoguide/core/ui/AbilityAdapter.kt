@@ -1,21 +1,20 @@
 package com.iedrania.valoguide.core.ui
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.iedrania.valoguide.core.R
-import com.iedrania.valoguide.core.domain.model.Agent
-import com.iedrania.valoguide.core.databinding.ItemAgentBinding
+import com.iedrania.valoguide.core.databinding.ItemAbilityBinding
+import com.iedrania.valoguide.core.domain.model.Ability
 
-class AgentAdapter : RecyclerView.Adapter<AgentAdapter.ListViewHolder>() {
+class AbilityAdapter : RecyclerView.Adapter<AbilityAdapter.ListViewHolder>() {
 
-    private var listData = ArrayList<Agent>()
-    var onItemClick: ((Agent) -> Unit)? = null
+    private var listData = ArrayList<Ability>()
+    var onItemClick: ((Ability) -> Unit)? = null
 
-    fun setData(newListData: List<Agent>?) {
+    fun setData(newListData: List<Ability>?) {
         if (newListData == null) return
         listData.clear()
         listData.addAll(newListData)
@@ -23,7 +22,7 @@ class AgentAdapter : RecyclerView.Adapter<AgentAdapter.ListViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_agent, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.item_ability, parent, false)
     )
 
     override fun getItemCount() = listData.size
@@ -34,15 +33,14 @@ class AgentAdapter : RecyclerView.Adapter<AgentAdapter.ListViewHolder>() {
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemAgentBinding.bind(itemView)
-        fun bind(data: Agent) {
+        private val binding = ItemAbilityBinding.bind(itemView)
+        fun bind(data: Ability) {
             with(binding) {
                 Glide.with(itemView.context)
-                    .load(data.fullPortrait)
-                    .into(ivItemPhoto)
+                    .load(data.displayIcon)
+                    .into(ivItemIcon)
                 tvItemName.text = data.displayName
-                tvItemRole.text = data.role
-                root.setCardBackgroundColor(Color.parseColor("#${data.backgroundGradientColors}"))
+                tvItemDescription.text = data.description
             }
         }
 
