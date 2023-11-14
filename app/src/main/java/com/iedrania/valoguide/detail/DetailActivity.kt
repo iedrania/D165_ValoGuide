@@ -28,8 +28,9 @@ class DetailActivity : AppCompatActivity() {
             showAgentDetail(detailAgent)
         }
 
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = ""
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val abilityAdapter = AbilityAdapter()
         abilityAdapter.setData(detailAgent?.abilities)
