@@ -17,3 +17,4 @@ rootProject.name = "ValoGuide"
 include(":app")
 include(":core")
 include(":favorite")
+include(":settings")

@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         val agentAdapter = AgentAdapter()
         agentAdapter.onItemClick = { selectedData ->
             val intent = Intent(this, DetailActivity::class.java)
@@ -71,6 +74,11 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_favorites -> {
                 val uri = Uri.parse("valoguide://favorite")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
+            }
+
+            R.id.action_settings -> {
+                val uri = Uri.parse("valoguide://settings")
                 startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }

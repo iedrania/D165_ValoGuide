@@ -9,4 +9,5 @@
     <string name="empty">No favorites.</string>
     <string name="title_favorite">Favorite</string>
     <string name="tagline">Choose your awesome agents</string>
+    <string name="title_settings">Settings</string>
 </resources>
