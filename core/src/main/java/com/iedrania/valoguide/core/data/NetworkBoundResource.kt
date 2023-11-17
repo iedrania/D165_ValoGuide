@@ -19,9 +19,11 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
                     saveCallResult(apiResponse.data)
                     emitAll(loadFromDB().map { Resource.Success(it) })
                 }
+
                 is ApiResponse.Empty -> {
                     emitAll(loadFromDB().map { Resource.Success(it) })
                 }
+
                 is ApiResponse.Error -> {
                     onFetchFailed()
                     emit(Resource.Error(apiResponse.errorMessage))

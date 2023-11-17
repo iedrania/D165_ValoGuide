@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_favorites -> {
-                val uri = Uri.parse("valoguide://favorite")
+                val uri = Uri.parse("valoguide://favorites")
                 startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
 

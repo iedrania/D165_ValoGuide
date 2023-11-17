@@ -18,12 +18,10 @@ class AgentRepository(
 ) : IAgentRepository {
     override fun getAllAgent(): Flow<Resource<List<Agent>>> =
         object : NetworkBoundResource<List<Agent>, List<AgentResponse>>(appExecutors) {
-            override fun loadFromDB(): Flow<List<Agent>> {
-                return localDataSource.getAllAgent().map { DataMapper.mapEntitiesToDomain(it) }
-            }
+            override fun loadFromDB(): Flow<List<Agent>> =
+                localDataSource.getAllAgent().map { DataMapper.mapEntitiesToDomain(it) }
 
-            override fun shouldFetch(data: List<Agent>?): Boolean =
-                true
+            override fun shouldFetch(data: List<Agent>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<AgentResponse>>> =
                 remoteDataSource.getAllAgent()

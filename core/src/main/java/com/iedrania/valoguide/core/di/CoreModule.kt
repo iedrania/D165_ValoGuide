@@ -17,11 +17,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
-    factory { get<com.iedrania.valoguide.core.data.source.local.room.AgentDatabase>().agentDao() }
+    factory { get<AgentDatabase>().agentDao() }
     single {
         Room.databaseBuilder(
-            androidContext(),
-            com.iedrania.valoguide.core.data.source.local.room.AgentDatabase::class.java, "Agent.db"
+            androidContext(), AgentDatabase::class.java, "Agent.db"
         ).fallbackToDestructiveMigration().build()
     }
 }
@@ -30,29 +29,22 @@ val networkModule = module {
     single {
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .build()
+            .connectTimeout(120, TimeUnit.SECONDS).readTimeout(120, TimeUnit.SECONDS).build()
     }
     single {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://valorant-api.com/v1/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(get())
-            .build()
-        retrofit.create(com.iedrania.valoguide.core.data.source.remote.network.ApiService::class.java)
+        val retrofit = Retrofit.Builder().baseUrl("https://valorant-api.com/v1/")
+            .addConverterFactory(GsonConverterFactory.create()).client(get()).build()
+        retrofit.create(ApiService::class.java)
     }
 }
 
 val repositoryModule = module {
-    single { com.iedrania.valoguide.core.data.source.local.LocalDataSource(get()) }
-    single { com.iedrania.valoguide.core.data.source.remote.RemoteDataSource(get()) }
-    factory { com.iedrania.valoguide.core.utils.AppExecutors() }
-    single<com.iedrania.valoguide.core.domain.repository.IAgentRepository> {
-        com.iedrania.valoguide.core.data.AgentRepository(
-            get(),
-            get(),
-            get()
+    single { LocalDataSource(get()) }
+    single { RemoteDataSource(get()) }
+    factory { AppExecutors() }
+    single<IAgentRepository> {
+        AgentRepository(
+            get(), get(), get()
         )
     }
 }

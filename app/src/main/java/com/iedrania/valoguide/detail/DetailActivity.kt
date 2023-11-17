@@ -42,7 +42,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showAgentDetail(agent: Agent) {
-        binding.relativeLayout.setBackgroundColor(Color.parseColor("#${agent.backgroundGradientColors}"))
+        binding.relativeLayout.setBackgroundColor(Color.parseColor("#BB${agent.backgroundGradientColors}"))
         binding.tvDetailName.text = agent.displayName
         binding.tvDetailDescription.text = agent.role
         Glide.with(this)

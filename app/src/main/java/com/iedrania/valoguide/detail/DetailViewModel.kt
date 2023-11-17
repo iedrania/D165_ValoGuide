@@ -5,6 +5,6 @@ import com.iedrania.valoguide.core.domain.model.Agent
 import com.iedrania.valoguide.core.domain.usecase.AgentUseCase
 
 class DetailViewModel(private val agentUseCase: AgentUseCase) : ViewModel() {
-    fun setFavoriteAgent(agent: Agent, newStatus:Boolean) =
+    fun setFavoriteAgent(agent: Agent, newStatus: Boolean) =
         agentUseCase.setFavoriteAgent(agent, newStatus)
 }

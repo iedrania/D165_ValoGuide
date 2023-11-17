@@ -42,7 +42,7 @@ class AgentAdapter : RecyclerView.Adapter<AgentAdapter.ListViewHolder>() {
                     .into(ivItemPhoto)
                 tvItemName.text = data.displayName
                 tvItemRole.text = data.role
-                root.setCardBackgroundColor(Color.parseColor("#${data.backgroundGradientColors}"))
+                cardView.setCardBackgroundColor(Color.parseColor("#BB${data.backgroundGradientColors}"))
             }
         }
 
