@@ -20,3 +20,24 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+
+    - name: Run Tests and Lint
+      run: ./gradlew lint test
+
+    - name: Store Test Results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: app/build/test-results
+
+    - name: Store Build Reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-reports
+        path: app/build/reports
+
+    - name: Store Debug APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: debug-apk
+        path: app/build/outputs/apk/debug/
