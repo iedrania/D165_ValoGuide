@@ -31,5 +31,5 @@ class AgentAdapter(private val listAgent: List<Agent>) :
 
     override fun getItemCount() = listAgent.size
 
-    class ViewHolder(var binding: ItemAgentBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(var binding: ItemAgentBinding) : RecyclerView.ViewHolder(binding.root)
 }

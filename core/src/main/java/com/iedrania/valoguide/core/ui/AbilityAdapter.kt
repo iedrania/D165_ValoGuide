@@ -25,5 +25,5 @@ class AbilityAdapter(private val listAbility: List<Ability>) :
 
     override fun getItemCount() = listAbility.size
 
-    class ViewHolder(var binding: ItemAbilityBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(var binding: ItemAbilityBinding) : RecyclerView.ViewHolder(binding.root)
 }
