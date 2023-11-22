@@ -34,21 +34,21 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/black">
 
-                <RelativeLayout
-                    android:id="@+id/relativeLayout"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="200dp">
 
                     <LinearLayout
                         android:id="@+id/titleLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="32dp"
-                        android:orientation="vertical">
+                        android:layout_marginStart="50dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
                             android:id="@+id/tv_detail_name"
@@ -73,13 +73,14 @@
                         android:layout_width="160dp"
                         android:layout_height="150dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="72dp"
-                        android:layout_marginEnd="16dp"
                         android:contentDescription="@string/agent_portrait"
                         android:scaleX="2.5"
                         android:scaleY="2.5"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:src="@tools:sample/avatars" />
-                </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView

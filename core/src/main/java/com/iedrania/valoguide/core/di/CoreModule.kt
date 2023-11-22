@@ -1,6 +1,6 @@
 package com.iedrania.valoguide.core.di
 
-import androidx.room.Room
+import androidx.room.Room.databaseBuilder
 import com.iedrania.valoguide.core.data.AgentRepository
 import com.iedrania.valoguide.core.data.source.local.LocalDataSource
 import com.iedrania.valoguide.core.data.source.local.room.AgentDatabase
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<AgentDatabase>().agentDao() }
     single {
-        Room.databaseBuilder(
+        databaseBuilder(
             androidContext(), AgentDatabase::class.java, "Agent.db"
         ).fallbackToDestructiveMigration().build()
     }

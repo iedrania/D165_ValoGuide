@@ -26,13 +26,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        val agentAdapter = AgentAdapter()
-        agentAdapter.onItemClick = { selectedData ->
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_DATA, selectedData)
-            startActivity(intent)
-        }
-
         val mainViewModel: MainViewModel by viewModel()
         mainViewModel.agent.observe(this) {
             if (it != null) {
@@ -45,7 +38,17 @@ class MainActivity : AppCompatActivity() {
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
                         binding.tvError.visibility = View.GONE
-                        agentAdapter.setData(it.data)
+                        val agentAdapter = AgentAdapter(it.data!!)
+                        agentAdapter.onItemClick = { selectedData ->
+                            val intent = Intent(this, DetailActivity::class.java)
+                            intent.putExtra(DetailActivity.EXTRA_DATA, selectedData)
+                            startActivity(intent)
+                        }
+                        with(binding.rvAgents) {
+                            layoutManager = GridLayoutManager(context, 2)
+                            setHasFixedSize(true)
+                            adapter = agentAdapter
+                        }
                     }
 
                     is Resource.Error -> {
@@ -54,12 +57,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-
-        with(binding.rvAgents) {
-            layoutManager = GridLayoutManager(context, 2)
-            setHasFixedSize(true)
-            adapter = agentAdapter
         }
     }
 

@@ -1,27 +1,25 @@
 package com.iedrania.valoguide.settings
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.iedrania.valoguide.settings.databinding.ActivitySettingsBinding
 import org.koin.core.context.loadKoinModules
 
 class SettingsActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySettingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Settings"
+        supportActionBar?.title = getString(R.string.title)
 
         loadKoinModules(settingsModule)
-
-        val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
         val pref = SettingPreferences.getInstance(application.dataStore)
         val settingsViewModel =
@@ -29,14 +27,14 @@ class SettingsActivity : AppCompatActivity() {
         settingsViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                switchTheme.isChecked = true
+                binding.switchTheme.isChecked = true
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                switchTheme.isChecked = false
+                binding.switchTheme.isChecked = false
             }
         }
 
-        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+        binding.switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             settingsViewModel.saveThemeSetting(isChecked)
         }
     }

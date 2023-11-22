@@ -21,28 +21,25 @@ class FavoritesActivity : AppCompatActivity() {
 
         loadKoinModules(favoritesModule)
 
-        val agentAdapter = AgentAdapter()
-        agentAdapter.onItemClick = { selectedData ->
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_DATA, selectedData)
-            startActivity(intent)
-        }
-
         val favoritesViewModel: FavoritesViewModel by viewModel()
         favoritesViewModel.favoriteAgent.observe(this) {
-            agentAdapter.setData(it)
+            val agentAdapter = AgentAdapter(it)
+            agentAdapter.onItemClick = { selectedData ->
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_DATA, selectedData)
+                startActivity(intent)
+            }
+            with(binding.rvFavorites) {
+                layoutManager = GridLayoutManager(context, 2)
+                setHasFixedSize(true)
+                adapter = agentAdapter
+            }
             binding.tvEmpty.visibility = if (it.isNotEmpty()) View.GONE else View.VISIBLE
-        }
-
-        with(binding.rvFavorites) {
-            layoutManager = GridLayoutManager(context, 2)
-            setHasFixedSize(true)
-            adapter = agentAdapter
         }
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Favorite Agents"
+        supportActionBar?.title = getString(R.string.title)
     }
 
     override fun onSupportNavigateUp(): Boolean {

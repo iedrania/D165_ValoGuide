@@ -2,54 +2,34 @@ package com.iedrania.valoguide.core.ui
 
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.iedrania.valoguide.core.R
-import com.iedrania.valoguide.core.domain.model.Agent
 import com.iedrania.valoguide.core.databinding.ItemAgentBinding
+import com.iedrania.valoguide.core.domain.model.Agent
 
-class AgentAdapter : RecyclerView.Adapter<AgentAdapter.ListViewHolder>() {
-
-    private var listData = ArrayList<Agent>()
+class AgentAdapter(private val listAgent: List<Agent>) :
+    RecyclerView.Adapter<AgentAdapter.ViewHolder>() {
     var onItemClick: ((Agent) -> Unit)? = null
-
-    fun setData(newListData: List<Agent>?) {
-        if (newListData == null) return
-        listData.clear()
-        listData.addAll(newListData)
-        notifyDataSetChanged()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ItemAgentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_agent, parent, false)
-    )
-
-    override fun getItemCount() = listData.size
-
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val data = listData[position]
-        holder.bind(data)
-    }
-
-    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemAgentBinding.bind(itemView)
-        fun bind(data: Agent) {
-            with(binding) {
-                Glide.with(itemView.context)
-                    .load(data.fullPortrait)
-                    .into(ivItemPhoto)
-                tvItemName.text = data.displayName
-                tvItemRole.text = data.role
-                cardView.setCardBackgroundColor(Color.parseColor("#BB${data.backgroundGradientColors}"))
-            }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val agent = listAgent[position]
+        with(holder.binding) {
+            Glide.with(ivItemPhoto).load(agent.fullPortrait).into(ivItemPhoto)
+            tvItemName.text = agent.displayName
+            tvItemRole.text = agent.role
+            cardView.setCardBackgroundColor(Color.parseColor("#BB${agent.backgroundGradientColors}"))
         }
-
-        init {
-            binding.root.setOnClickListener {
-                onItemClick?.invoke(listData[adapterPosition])
-            }
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(agent)
         }
     }
+
+    override fun getItemCount() = listAgent.size
+
+    class ViewHolder(var binding: ItemAgentBinding) : RecyclerView.ViewHolder(binding.root)
 }

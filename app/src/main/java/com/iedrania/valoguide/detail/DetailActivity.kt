@@ -32,8 +32,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        val abilityAdapter = AbilityAdapter()
-        abilityAdapter.setData(detailAgent?.abilities)
+        val abilityAdapter = detailAgent?.let { AbilityAdapter(it.abilities) }
         with(binding.rvAbilities) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
@@ -42,12 +41,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showAgentDetail(agent: Agent) {
-        binding.relativeLayout.setBackgroundColor(Color.parseColor("#BB${agent.backgroundGradientColors}"))
+        binding.constraintLayout.setBackgroundColor(Color.parseColor("#BB${agent.backgroundGradientColors}"))
         binding.tvDetailName.text = agent.displayName
         binding.tvDetailDescription.text = agent.role
-        Glide.with(this)
-            .load(agent.fullPortrait)
-            .into(binding.ivDetailPhoto)
+        Glide.with(this).load(agent.fullPortrait).into(binding.ivDetailPhoto)
 
         var favorite = agent.isFavorite
         setFavorite(favorite)
