@@ -8,6 +8,8 @@ import com.iedrania.valoguide.core.data.source.remote.RemoteDataSource
 import com.iedrania.valoguide.core.data.source.remote.network.ApiService
 import com.iedrania.valoguide.core.domain.repository.IAgentRepository
 import com.iedrania.valoguide.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -18,10 +20,12 @@ import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
     factory { get<AgentDatabase>().agentDao() }
+    val passphrase: ByteArray = SQLiteDatabase.getBytes("iedrania".toCharArray())
+    val factory = SupportFactory(passphrase)
     single {
         databaseBuilder(
             androidContext(), AgentDatabase::class.java, "Agent.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration().openHelperFactory(factory).build()
     }
 }
 

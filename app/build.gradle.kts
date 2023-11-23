@@ -8,12 +8,12 @@ apply("../shared_dependencies.gradle")
 
 android {
     namespace = "com.iedrania.valoguide"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.iedrania.valoguide"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -47,7 +47,5 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.preference:preference:1.2.1")
-    implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.preference:preference-ktx:1.2.1")
 }

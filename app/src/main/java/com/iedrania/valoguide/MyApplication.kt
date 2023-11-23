@@ -42,18 +42,20 @@ class MyApplication : Application(), SharedPreferences.OnSharedPreferenceChangeL
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-        if (key == getString(R.string.dark_mode_key)) {
-            applyDarkMode(sharedPreferences)
-        }
-    }
-
     private fun applyDarkMode(sharedPreferences: SharedPreferences) {
         val darkMode = sharedPreferences.getBoolean(getString(R.string.dark_mode_key), false)
         if (darkMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (key == getString(R.string.dark_mode_key)) {
+            if (sharedPreferences != null) {
+                applyDarkMode(sharedPreferences)
+            }
         }
     }
 }
