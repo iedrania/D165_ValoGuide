@@ -15,6 +15,7 @@ import com.iedrania.valoguide.core.data.Resource.Success
 import com.iedrania.valoguide.core.ui.AgentAdapter
 import com.iedrania.valoguide.databinding.ActivityMainBinding
 import com.iedrania.valoguide.detail.DetailActivity
+import com.iedrania.valoguide.settings.SettingsActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -77,8 +78,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.action_settings -> {
-                val uri = Uri.parse("valoguide://settings")
-                startActivity(Intent(Intent.ACTION_VIEW, uri))
+//                val uri = Uri.parse("valoguide://settings")
+//                startActivity(Intent(Intent.ACTION_VIEW, uri))
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)

@@ -10,4 +10,12 @@
     <string name="title_favorites">Favorites</string>
     <string name="tagline">Choose your awesome agents</string>
     <string name="title_settings">Settings</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="theme_header">Theme</string>
+
+    <!-- Theme Preferences -->
+    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_key">dark_mode</string>
 </resources>
