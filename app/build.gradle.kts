@@ -8,12 +8,12 @@ apply("../shared_dependencies.gradle")
 
 android {
     namespace = "com.iedrania.valoguide"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.iedrania.valoguide"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -22,7 +22,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -42,9 +42,10 @@ android {
     lint {
         baseline = file("lint-baseline.xml")
     }
-    dynamicFeatures += setOf(":favorites", ":settings")
+    dynamicFeatures += setOf(":favorites")
 }
 
 dependencies {
     implementation(project(":core"))
+    implementation("androidx.preference:preference-ktx:1.2.1")
 }

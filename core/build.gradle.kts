@@ -8,7 +8,7 @@ apply("../shared_dependencies.gradle")
 
 android {
     namespace = "com.iedrania.valoguide.core"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -19,7 +19,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -44,8 +44,8 @@ android {
 dependencies {
 
     // room
-    implementation("androidx.room:room-runtime:2.5.0")
-    ksp("androidx.room:room-compiler:2.5.0")
+    implementation("androidx.room:room-runtime:2.6.0")
+    ksp("androidx.room:room-compiler:2.6.0")
 
     // retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
@@ -55,6 +55,10 @@ dependencies {
     // coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-    implementation("androidx.room:room-ktx:2.5.0")
+    implementation("androidx.room:room-ktx:2.6.0")
     api ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+
+    // encryption
+    implementation("net.zetetic:android-database-sqlcipher:4.4.0")
+    implementation("androidx.sqlite:sqlite-ktx:2.4.0")
 }

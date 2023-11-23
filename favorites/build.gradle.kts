@@ -7,7 +7,7 @@ apply("../shared_dependencies.gradle")
 
 android {
     namespace = "com.iedrania.valoguide.favorites"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
