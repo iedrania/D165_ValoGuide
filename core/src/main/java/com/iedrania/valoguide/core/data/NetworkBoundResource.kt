@@ -25,7 +25,6 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
                 }
 
                 is ApiResponse.Error -> {
-                    onFetchFailed()
                     emit(Resource.Error(apiResponse.errorMessage))
                 }
             }
@@ -33,8 +32,6 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
             emitAll(loadFromDB().map { Resource.Success(it) })
         }
     }
-
-    protected open fun onFetchFailed() {}
 
     protected abstract fun loadFromDB(): Flow<ResultType>
 

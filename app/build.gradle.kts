@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.iedrania.valoguide"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
