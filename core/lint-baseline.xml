@@ -1,4 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <issues format="6" by="lint 8.1.2" type="baseline" client="gradle" dependencies="false" name="AGP (8.1.2)" variant="all" version="8.1.2">
 
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `font` is only used in API level 26 and higher (current min is 24)"
+        errorLine1="        android:font=&quot;@font/gilroy_regular&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/font/gilroy.xml"
+            line="4"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontStyle` is only used in API level 26 and higher (current min is 24)"
+        errorLine1="        android:fontStyle=&quot;normal&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/font/gilroy.xml"
+            line="5"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontWeight` is only used in API level 26 and higher (current min is 24)"
+        errorLine1="        android:fontWeight=&quot;400&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/font/gilroy.xml"
+            line="6"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `font` is only used in API level 26 and higher (current min is 24)"
+        errorLine1="        android:font=&quot;@font/gilroy_bold&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/font/gilroy.xml"
+            line="8"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontStyle` is only used in API level 26 and higher (current min is 24)"
+        errorLine1="        android:fontStyle=&quot;normal&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/font/gilroy.xml"
+            line="9"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontWeight` is only used in API level 26 and higher (current min is 24)"
+        errorLine1="        android:fontWeight=&quot;700&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/font/gilroy.xml"
+            line="10"
+            column="9"/>
+    </issue>
+
 </issues>
