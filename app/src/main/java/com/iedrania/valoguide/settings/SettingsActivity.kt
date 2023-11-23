@@ -1,12 +1,8 @@
 package com.iedrania.valoguide.settings
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.SwitchPreferenceCompat
 import com.iedrania.valoguide.R
 
 class SettingsActivity : AppCompatActivity() {
